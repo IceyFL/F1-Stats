@@ -1,4 +1,6 @@
 #imports
+
+#local imports
 import api
 
 
@@ -22,14 +24,24 @@ def intInput(message, min = None, max = None):
 
 #main
 def main():
+    #get all drivers
+    driversJSON = api.getDrivers() #load driver info
+
     mainLoop = True
     while mainLoop: #loop until user exits program
-        driversJSON = api.getDrivers() #load driver info
-
-        for driver in driversJSON:
+        for driver in driversJSON: #output each drivers name and number
             print(f"{driver['driver_number']}  {driver['full_name']}")
 
-        choice = intInput("Enter driver number: ", min = 1, max = 99) #get user input to get more info
+        driverNum = intInput("Enter driver number: ", min = 1, max = 99) #get user input to get more info
+
+        #get average points for that driver
+        driverInfo = api.getSeasonInfo(driverNum)
+        #driverInfo = [RacesEntered, AveragePoints]
+
+        print("Races entered: " + str(driverInfo[0]))
+        print("Average Points: " + str(driverInfo[1]))
+
+        input("\nPress enter to continue...\n")
 
 
 
