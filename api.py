@@ -62,6 +62,19 @@ def getDrivers():
 
 #more functions
 
+
+def getQualyGap(race):
+    #get gap to leader list
+    gap_to_leader = race["gap_to_leader"]
+
+    listLen = len(gap_to_leader)
+
+    #remove laps that are None
+    for i in range(listLen):
+        if gap_to_leader[listLen - i - 1] != None: #if driver got into that Q
+            return gap_to_leader[listLen - i - 1]
+
+
 #get average points this year for a driver
 def getSeasonInfo(driver_number):
 
@@ -76,6 +89,9 @@ def getSeasonInfo(driver_number):
     totalPoints = 0
     totalQualyPos = 0
     totalRacePos = 0
+    totalQualyGap = 0
+
+    dsqCount = 0
 
 
     #get all race results
@@ -100,8 +116,13 @@ def getSeasonInfo(driver_number):
                 totalQualyPos += race["position"] #add position to total qualy positions
                 qualyEntered += 1 #add 1 to races entered
 
+                #add qualy gap to total gap
+                totalQualyGap += getQualyGap(race)
+
+
         else:
             if sesKey in raceSessions:
+                dsqCount += 1
                 totalRacePos += 20 #add last place to total
                 racesEntered += 1
 
@@ -122,10 +143,12 @@ def getSeasonInfo(driver_number):
     averagePoints = totalPoints / raceCountCalc
     averageRacePos = totalRacePos / raceCountCalc
     averageQualyPos = totalQualyPos / qualyCountCalc
+    averageQualyGap = totalQualyGap / qualyCountCalc
 
     #round results
     averagePoints = round(averagePoints, 2)
     averageRacePos = round(averageRacePos, 2)
     averageQualyPos = round(averageQualyPos, 2)
+    averageQualyGap = round(averageQualyGap, 3)
 
-    return [racesEntered, averageRacePos, averagePoints, qualyEntered, averageQualyPos]
+    return [racesEntered, averageRacePos, averagePoints, dsqCount, qualyEntered, averageQualyPos, averageQualyGap]

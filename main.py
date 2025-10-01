@@ -32,18 +32,20 @@ def main():
         for driver in driversJSON: #output each drivers name and number
             print(f"{driver['driver_number']}  {driver['full_name']}")
 
-        driverNum = intInput("Enter driver number: ", min = 1, max = 99) #get user input to get more info
+        driverNum = intInput("Enter driver number: ", min = 1, max = 99) #get user input to ge t more info
 
         #get average points for that driver
         driverInfo = api.getSeasonInfo(driverNum)
-        #driverInfo = [racesEntered, averageRacePos, averagePoints, qualyEntered, averageQualyPos]
+        #driverInfo = [racesEntered, averageRacePos, averagePoints, dsqCount, qualyEntered, averageQualyPos, averageQualyGap]
 
         print("\nSeason Stats\n")
         print("Races entered: " + str(driverInfo[0]))
+        print("DNF/DNS/DSQ count: " + str(driverInfo[3]))
         print("Average Result: " + str(driverInfo[1]))
         print("Average Points: " + str(driverInfo[2]))
-        print("\nQualy Sessions Entered: " + str(driverInfo[3]))
-        print("Average Qualy Result: " + str(driverInfo[4]))
+        print("\nQualy Sessions Entered: " + str(driverInfo[4]))
+        print("Average Qualy Result: " + str(driverInfo[5]))
+        print("Average Qualy Gap: " + str(driverInfo[6]))
 
         input("\nPress enter to continue...\n")
 
