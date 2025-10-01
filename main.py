@@ -36,10 +36,14 @@ def main():
 
         #get average points for that driver
         driverInfo = api.getSeasonInfo(driverNum)
-        #driverInfo = [RacesEntered, AveragePoints]
+        #driverInfo = [racesEntered, averageRacePos, averagePoints, qualyEntered, averageQualyPos]
 
+        print("\nSeason Stats\n")
         print("Races entered: " + str(driverInfo[0]))
-        print("Average Points: " + str(driverInfo[1]))
+        print("Average Result: " + str(driverInfo[1]))
+        print("Average Points: " + str(driverInfo[2]))
+        print("\nQualy Sessions Entered: " + str(driverInfo[3]))
+        print("Average Qualy Result: " + str(driverInfo[4]))
 
         input("\nPress enter to continue...\n")
 
