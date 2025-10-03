@@ -8,4 +8,4 @@ A program that allows you to view the stats of an F1 driver throughout the 2025 
 
 1. Install python
 2. Install requests `pip install requests`
-3. run  `main.py`
+3. run  `main.pyw`
