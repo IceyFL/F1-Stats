@@ -25,7 +25,7 @@ def getSessionIDs(year=None, session_type = "Race"):
     sessionIDs = [] #initialize list
 
     for session in sessionsJSON: #iterate through sessions
-        sessionIDs.append(session["session_key"]) #add session ID to list
+        sessionIDs.append(int(session["session_key"])) #add session ID to list
 
     return sessionIDs
 
@@ -113,11 +113,12 @@ def getSeasonInfo(driver_number):
                 racesEntered += 1 #add 1 to races entered
 
             elif sesKey in qualySessions: #if is in qualy list
-                totalQualyPos += race["position"] #add position to total qualy positions
-                qualyEntered += 1 #add 1 to races entered
+                if race["position"] != None: #stop dnf error
+                    totalQualyPos += race["position"] #add position to total qualy positions
 
-                #add qualy gap to total gap
-                totalQualyGap += getQualyGap(race)
+                    #add qualy gap to total gap
+                    totalQualyGap += getQualyGap(race)
+                qualyEntered += 1 #add 1 to qualy sessions entered
 
 
         else:
