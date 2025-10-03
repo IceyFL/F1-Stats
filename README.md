@@ -1,8 +1,8 @@
 # F1 Stats
 
-A simple console based program that allows you to access data about a drivers current season  
+A program that allows you to view the stats of an F1 driver throughout the 2025 season and also compare the stats of 2 drivers
+<img width="1196" height="648" alt="image" src="https://github.com/user-attachments/assets/56fff514-f3f4-4ef1-971a-9ed548835fb2" />
 
-<img width="295" height="586" alt="image" src="https://github.com/user-attachments/assets/9620979d-f014-4114-8ea8-f126fb5d0123" />
 
 # Setup
 
